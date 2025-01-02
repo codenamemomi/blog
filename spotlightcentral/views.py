@@ -1,12 +1,18 @@
 from django.shortcuts import get_object_or_404,render
 from .models import Post
 from django.http import Http404
-
+from django.core.paginator import Paginator
 # Create your views here.
 
 
 def post_list(request):
-    posts = Post.published.all()
+    post_list = Post.published.all()
+    #doing a paginator with only 4 post per list
+    paginator = Paginator(post_list, 4)
+    page_number = request.GET.get('page', 1)
+    posts = paginator.page(page_number)
+
+
     return render(
         request,
         'spotlightcentral/post/list.html',

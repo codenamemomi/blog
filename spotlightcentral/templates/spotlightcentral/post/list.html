@@ -1,22 +1,23 @@
 {% extends "spotlightcentral/base.html" %}
 {% block title %}SPOTLIGHTCENTRAL{% endblock %}
 {% block content %}
-<h1>ENTERTAINIA</h1>
-{% if posts %}
-  {% for post in posts %}
-  <article>
-    <h2>
-      <a href="{{ post.get_absolute_url }}">
-        {{ post.title }}
-      </a>
-    </h2>
-    <p class="date">
-      Published {{ post.publish }} by {{ post.author }}
-    </p>
-    {{ post.body|truncatewords:30|linebreaks }}
-  </article>
-  {% endfor %}
-{% else %}
-  <p>No posts available.</p>
-{% endif %}
+  <h1>ENTERTAINIA</h1>
+  {% if posts %}
+    {% for post in posts %}
+      <article>
+        <h2>
+          <a href="{{ post.get_absolute_url }}">
+            {{ post.title }}
+          </a>
+        </h2>
+        <p class="date">
+          Published {{ post.publish|date:"F d, Y" }} by {{ post.author }}
+        </p>
+        {{ post.body|truncatewords:30|linebreaks }}
+      </article>
+    {% empty %}
+      <p>No posts available.</p>
+    {% endfor %}
+    {% include "spotlightcentral/pagination.html" with page=posts %}
+  {% endif %}
 {% endblock %}
