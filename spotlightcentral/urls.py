@@ -5,8 +5,10 @@ app_name = 'spotlightcentral'
 
 urlpatterns = [
     path('', views.post_list, name= 'post_list'),
+    path('', views.PostListView.as_view(), name='post_list'),
     path(
         '<int:year>/<int:month>/<int:day>/<slug:slug>/', 
         views.post_details, 
         name= 'post_detail'),
 ]
+
