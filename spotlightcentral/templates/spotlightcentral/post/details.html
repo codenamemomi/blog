@@ -4,8 +4,13 @@
   <article>
     <h1>{{ post.title }}</h1>
     <p class="date">
-      Published on: {{ post.publish.day }}/{{ post.publish.month }}/{{ post.publish.year}} by {{ post.author }}
+      Published on: {{ post.publish|date:"d/m/Y" }} by {{ post.author }}
     </p>
     {{ post.body|linebreaks }}
+    <p>
+      <a href=" {% url 'spotlightcentral:post_share' post.id %}">
+        Share this post
+      </a>
+    </p>
   </article>
 {% endblock %}

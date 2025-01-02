@@ -14,10 +14,15 @@
           Published {{ post.publish|date:"F d, Y" }} by {{ post.author }}
         </p>
         {{ post.body|truncatewords:30|linebreaks }}
+        <p>
+          <a href="{{ post.get_absolute_url }}">Read more</a>
+        </p>
       </article>
     {% empty %}
       <p>No posts available.</p>
     {% endfor %}
     {% include "spotlightcentral/pagination.html" with page=posts %}
+  {% else %}
+    <p>No posts available.</p>
   {% endif %}
 {% endblock %}
