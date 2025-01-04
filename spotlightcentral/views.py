@@ -3,8 +3,9 @@ from .models import Post
 from django.http import Http404
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django .views.generic import ListView
-from .forms import EmailPostForm
+from .forms import EmailPostForm, CommentForm
 from django.core.mail import send_mail
+from django.views.decorators.http import require_POST
 # Create your views here.
 
 
@@ -21,8 +22,24 @@ def post_list(request):
     return render(request, 'spotlightcentral/post/list.html', {'posts': posts})
 
 def post_details(request, year, month, day, slug):
-    post = get_object_or_404(Post, status=Post.Status.PUBLISHED, slug=slug, publish__year=year, publish__month=month, publish__day=day)
-    return render(request, 'spotlightcentral/post/details.html', {'post': post})
+    post = get_object_or_404(Post, status=Post.Status.PUBLISHED, 
+                             slug=slug, 
+                             publish__year=year, 
+                             publish__month=month, 
+                             publish__day=day)
+    
+    # active comment list
+    comments = post.comments.filter(active = True)
+    # form for user comments
+    form = CommentForm()
+    return render(request, 'spotlightcentral/post/details.html', 
+                    {
+                    'post': post,
+                    'form': form,
+                    'comments': comments
+                    }
+                )
+
 
 class PostListView(ListView):
     queryset = Post.published.all()
@@ -72,4 +89,24 @@ def post_share(request, post_id):
                                                                     'form': form})
 
 
+@require_POST
+def post_comment(request, post_id):
+    post = get_object_or_404(
+        Post,
+        id = post_id,
+        status = Post.Status.PUBLISHED
+    )
+    comment = None
+    form = CommentForm(data= request.POST)
+    if form.is_valid():
+        comment = form.save(commit= False)
 
+        comment.post = post
+
+        comment.save()
+    return render(
+        request, 'spotlightcentral/post/share.html',
+        {'post': post,
+         'form': form,
+         'comment': comment}
+    )
