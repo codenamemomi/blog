@@ -192,3 +192,35 @@ input[type="submit"]:focus {
     outline: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+/* comments */
+.comments {
+    background-color: #f0f8ff; /* Light blue background */
+    padding: 20px; /* Add padding to comments */
+    border: 1px solid #ccc; /* Light gray border for comments */
+    border-radius: 5px; /* Rounded corners for comments */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow to comments */
+}
+
+.comment {
+    margin-bottom: 20px; /* Add margin to individual comments */
+    padding: 10px; /* Add padding to individual comments */
+    border-bottom: 1px solid #ccc; /* Light gray border for individual comments */
+}
+
+.comment-author {
+    font-weight: bold; /* Make comment author bold */
+    color: #4682b4; /* Steel blue color for comment author */
+}
+
+.comment-date {
+    font-size: 12px; /* Set font size for comment date */
+    color: #8b0000; /* Dark red color for comment date */
+    font-style: italic; /* Make comment date italic */
+}
+
+.comment-text {
+    font-size: 14px; /* Set font size for comment text */
+    color: #333; /* Dark text color for comment text */
+}
+
