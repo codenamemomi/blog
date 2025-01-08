@@ -30,8 +30,7 @@ a:hover {
     border-radius: 5px; /* Rounded corners on hover */
     padding: 2px 5px; /* Padding on hover */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow on hover */
-    transform: scale(1.05);
-    transition: transform 0.2s ease;
+    
 }
 
 h1 { 
