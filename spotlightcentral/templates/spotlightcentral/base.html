@@ -5,16 +5,39 @@
         <title>
             {% block title %}{% endblock %}
         </title>
-        <link href="{% static "css/spotlightcentral.css" %}" rel="stylesheet">
+        <link href="{% static 'css/spotlightcentral.css' %}" rel="stylesheet">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Spotlight Central">
         <meta name="keywords" content="spotlight, central, highlights">
+        <!-- Add Font Awesome for icons (optional) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     </head>
     <body>
+        <!-- Header with Navigation Menu -->
+        <header>
+            <h1>ENTERTAINIA</h1>
+            <nav>
+                <ul class="menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#">Highlights</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
         <div id="content">
             {% block content %}{% endblock %}
         </div>
+
+        <!-- Sidebar -->
         <div id="sidebar">
             <h2>SPOTLIGHTCENTRAL</h2>
             <p>This is for highlights.</p>
@@ -23,5 +46,14 @@
             </ul>
             <p>&copy; 2023 Spotlight Central</p>
         </div>
+        <!-- JavaScript for Mobile Menu Toggle -->
+        <script>
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navMenu = document.querySelector('.menu');
+
+            mobileMenu.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        </script>
     </body>
 </html>

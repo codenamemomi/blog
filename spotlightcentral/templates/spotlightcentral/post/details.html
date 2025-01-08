@@ -2,7 +2,7 @@
 {% block title %}{{ post.title }}{% endblock %}
 {% block content %}
   <article>
-    <h1>{{ post.title }}</h1>
+    <h2>{{ post.title }}</h2>
     <p class="date">
       Published on: {{ post.publish|date:"d/m/Y" }} by {{ post.author }}
     </p>
@@ -13,9 +13,9 @@
       </a>
     </p>
     {% with comments.count as total_comments %}
-    <h2>
+    <h3>
       {{ total_comments}} comment{{ total_comments|pluralize }}
-    </h2>
+    </h3>
     {% endwith %}
     {% for comment in comments %}
     <div class="comment">
