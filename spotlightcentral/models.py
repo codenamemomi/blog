@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.db.models.functions import Now
 from django.conf import settings
 from django.urls import reverse
+from taggit.managers import TaggableManager
 
 # Create your models here.
 
@@ -32,6 +33,7 @@ class Post(models.Model):
     status = models.CharField(max_length=2, choices=Status, default=Status.DRAFT)
     objects = models.Manager()       #default manager
     published = PublishedManager()   #my custom manager
+    tags = TaggableManager()
 
     class Meta:
         ordering = ['-publish']
@@ -58,6 +60,8 @@ class Post(models.Model):
         if self.status == self.Status.PUBLISHED and not self.publish:
             self.publish = timezone.now()
         super().save(*args, **kwargs)
+
+
 
 class Comment(models.Model):
     post = models.ForeignKey(

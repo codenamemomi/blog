@@ -20,6 +20,12 @@ body {
     padding: 0;
 }
 
+p1{
+    font-size: 12px;
+    font-style: oblique;
+    color: rgba(241, 226, 198, 0.269);
+}
+
 h1{ 
     font-weight: normal;
     border-bottom: 2px solid #8458b3; /* Tomato color for border */
@@ -48,7 +54,15 @@ h3 {
     font-style: italic;
 }
 
-
+h4 {
+    font-weight: normal;
+    margin: 30px 0 0;
+    color: #8458b3; /* Steel blue color for subheading */
+    font-size: 19px; /* Set font size for subheadings */
+    font-family: 'Helvetica', sans-serif; /* Set font family for headings */
+    font-style: italic;
+    text-decoration: underline;
+}
 p.date { 
     color: #a0d2eb71;
     font-family: 'Georgia', serif;
